@@ -1,0 +1,41 @@
+Kibana info
+============================
+
+1.To Scrape(pull) the Logs from different remote sources,we need the logging agents to be deployed in remote servers/containers/pods/db-servers etc as watchdogs.
+2.We need to get the log paths where logs are generated clearly from dev team.
+
+Shipping Agents
+   1.Beats( Elastic Stack Agents )
+   	a.Filebeat: Primarily used for shipping log files. It can monitor specific log files and send logs to Elasticsearch or Logstash.
+   
+       b.Metricbeat: Collects system and application metrics (CPU, memory, disk usage).
+       
+       c.Packetbeat: Monitors network traffic data.
+       
+       d.Auditbeat: Collects audit data from the host (security monitoring).
+       
+       e.Heartbeat: Monitors the availability of services (uptime monitoring).
+       
+       f.Functionbeat: Collects logs from serverless environments (like AWS Lambda).
+   2.Logstash (Advanced Log Processing Agent)
+   
+   3.Fluentd (Cloud-Native Logging Agent)
+   	Widely used in kubernetes platform log collection
+   
+   4.Filebeat with Logstash (Hybrid Setup) - we use this approach
+		Filebeat(agent installed on every conatiner pods or nodes ) can be configured to send logs to Logstash for processing before they are stored in Elasticsearch. This setup is useful for environments that need complex log transformation.
+   
+   5.Syslog-based Agents (rsyslog, syslog-ng)
+
+
+Default ports
+-------------
+Elasticsearch - 9200
+Kibana		  -	5601
+
+What is mean by Indexing in Elasticsearch ?
+In Elasticsearch, indexing refers to the process of storing and organizing data in a way that makes it easy to search and retrieve. When logs or other data are sent to Elasticsearch, they are indexed (organized in a structure) to allow fast and efficient searches.
+
+
+
+
