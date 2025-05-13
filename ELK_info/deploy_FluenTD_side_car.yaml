@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: my-app-image:latest
+        ports:
+        - containerPort: 80
+      - name: fluentd-sidecar
+        # Fluentd sidecar container
+        image: fluent/fluentd:v1.12-debian-1
+        volumeMounts:
+        - name: fluentd-config
+          mountPath: /fluentd/etc
+      volumes:
+      - name: fluentd-config
+        configMap:
+          name: fluentd-config
